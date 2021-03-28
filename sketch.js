@@ -15,7 +15,7 @@ function setup() {
 	createCanvas(800, 700);
 	rectMode(CENTER);
 	
- 
+
 	packageSprite=createSprite(width/2, 80, 10,10);
 	packageSprite.addImage(packageIMG)
 	packageSprite.scale=0.2
@@ -27,38 +27,17 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
+
 	engine = Engine.create();
 	world = engine.world;
 
-	var ground_option = {
-		isStatic:false
-	}
-
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.6, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:3, isStatic:true});
 	World.add(world, packageBody);
 	
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
-	 World.add(world, ground);
-
-	packagePosition=width/2-100
-	packageY=610;
-	 
-	packageleftSprite=createSprite(packagePosition,packageY,20,100)
-	packageleftSprite.shapeColor=color(255,0,0);
-
-	packageLeftBody = Bodies.rectangle(packagePosition+20,packageY,20,100,{isStatic:true});
-	World.add(world,packageLeftBody);
-
-	packageBase=createSprite(packagePosition+20,packageY+40,200,20)
-	packageBase.shapeColor=color(255,0,0);
-
-	packageBottomBody = Bodies.rectangle(packagePosition+100,packageY+45-20,200,20,{isStatic:true});
-	World.add(world,packageBottomBody);
-
-	packageleftSprite=createSprite(packagePosition+200-20,packageY,20,100,{isStatic:true});
-	World.add(world,packageLeftBody);
+ 	World.add(world, ground);
 
 
 	Engine.run(engine);
@@ -70,13 +49,17 @@ function draw() {
   rectMode(CENTER);
   background(0);
   packageSprite.x= packageBody.position.x 
-  packageSprite.y= packageBody.position.y
-
+  packageSprite.y= packageBody.position.y 
   drawSprites();
+ 
 }
 
 function keyPressed() {
  if (keyCode === DOWN_ARROW) {
-	 Matter.Body.setStatic(packageBody,false);
+    Matter.Body.setStatic(packageBody,false);
+    
   }
 }
+
+
+
